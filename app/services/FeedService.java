@@ -8,7 +8,6 @@ import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
 
 import java.util.concurrent.CompletionStage;
-import java.util.concurrent.ExecutionException;
 
 public class FeedService {
     public FeedResponse getFeedbyQuery(String query) {
@@ -16,7 +15,7 @@ public class FeedService {
         FeedResponse feedResponseObject = new FeedResponse();
 
         try {
-            WSRequest feedRequest = WS.url("https:/news.google.com/news");
+            WSRequest feedRequest = WS.url("https://news.google.com/news");
             CompletionStage<WSResponse> responsePromise = feedRequest
                     .setQueryParameter("q",query)
                     .setQueryParameter("output","rss")
@@ -25,7 +24,7 @@ public class FeedService {
             Node item = feedResponse.getFirstChild().getFirstChild().getChildNodes().item(10);
             feedResponseObject.title = item.getChildNodes().item(0).getFirstChild().getNodeValue();
             feedResponseObject.description = item.getChildNodes().item(4).getFirstChild().getNodeValue();
-            feedResponseObject.pubDate = item.getChildNodes().item(3).getNodeValue();
+            feedResponseObject.pubDate = item.getChildNodes().item(3).getFirstChild().getNodeValue();
 
 
         } catch (Exception e) {

@@ -7,7 +7,10 @@ body {
 }
 
 #message-pane {
+
+    background-image: url(https://res.cloudinary.com/teepublic/image/private/s--Uzl_Sxjs--/t_Preview/b_rgb:191919,c_lpad,f_jpg,h_630,q_90,w_1200/v1478426587/production/designs/776204_1.jpg);
     background-color: #339fc6;
+    background-position: center center;
 }
 
 #form-card {
